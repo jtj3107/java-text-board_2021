@@ -8,12 +8,35 @@
 <link href="https://cdn.jsdelivr.net/npm/daisyui@0.20.0/dist/full.css"
 	rel="stylesheet" type="text/css" />
 <link rel="stylesheet" 
-href="${pageContext.request.contextPath}/resource/font.css" />
+	href="${pageContext.request.contextPath}/resource/font.css" />
+
+<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/resource/common.css" />
 </head>
 <body>
 	<section class="section section-article-write">
 		<div class="container mx-auto">
-			<form action="">
+			<script>
+				let ArticleWrite__submitDone = false;
+				function ArticleWrite__submit(form){
+					if(form.title.value.length == 0){
+						alert('제목을 입력해주세요.');
+						form.title.focus();
+						
+						return;
+					}
+					if(form.body.value.length == 0){
+						alert('내용을 입력해주세요.');
+						form.body.focus();
+						
+						return;
+					}
+					
+					form.submit();
+					
+				}
+			</script>
+			<form action="../article/doWrite" method="POST" onsubmit="ArticleWrite__submit(this); return false;">
 				<div>
 					<label class="label">
 						<span class="label-text">제목</span>
@@ -28,7 +51,12 @@ href="${pageContext.request.contextPath}/resource/font.css" />
 						<span class="label-text">내용</span>
 					</label>
 					<textarea maxlength="2000" class="textarea textarea-bordered h-24"
-						placeholder="내용" name="body"></textarea>
+						placeholder="내용을 입력해주세요." name="body"></textarea>
+				</div>
+				
+				<div class="btns">
+					<button type="submit" class="btn btn-link">작성</button>
+					<button type="button" class="btn btn-link">작성취소</button>
 				</div>
 			</form>
 		</div>
