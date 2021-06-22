@@ -1,9 +1,16 @@
 package com.jsh.exam.exam2.http.controller;
 
+import com.jsh.exam.exam2.dto.ResultDate;
 import com.jsh.exam.exam2.http.Rq;
+import com.jsh.exam.exam2.http.service.ArticleService;
 
 public class UsrArticleController extends Controller{
-
+	private ArticleService articleService;
+	
+	public UsrArticleController() {
+		articleService = new ArticleService();
+	}
+	
 	@Override
 	public void perforAction(Rq rq) {
 		switch (rq.getActionMethodName()) {
@@ -20,8 +27,19 @@ public class UsrArticleController extends Controller{
 		String title = rq.getParam("title", "");
 		String body = rq.getParam("body", "");
 		
-		rq.printf("title : %s<br>", title);
-		rq.printf("body : %s<br>", body);
+		if(title.length() == 0) {
+			rq.historyBack("title을 입력해주세요.");
+			return;
+		}
+		
+		if(body.length() == 0) {
+			rq.historyBack("body을 입력해주세요.");
+			return;
+		}
+		
+		ResultDate writeRd = articleService.write(title, body);
+		
+		rq.printf(writeRd.getMsg());
 	}
 
 	private void actionShowWrite(Rq rq) {
