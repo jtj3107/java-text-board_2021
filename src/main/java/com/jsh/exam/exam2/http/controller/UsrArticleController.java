@@ -2,17 +2,14 @@ package com.jsh.exam.exam2.http.controller;
 
 import java.util.List;
 
+import com.jsh.exam.exam2.container.Container;
 import com.jsh.exam.exam2.dto.Article;
 import com.jsh.exam.exam2.dto.ResultDate;
 import com.jsh.exam.exam2.http.Rq;
 import com.jsh.exam.exam2.http.service.ArticleService;
 
 public class UsrArticleController extends Controller{
-	private ArticleService articleService;
-	
-	public UsrArticleController() {
-		articleService = new ArticleService();
-	}
+	private ArticleService articleService = Container.articleService;
 	
 	@Override
 	public void perforAction(Rq rq) {
