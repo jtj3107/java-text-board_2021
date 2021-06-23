@@ -6,28 +6,62 @@
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-article-write">
+<section class="section section-article-write px-4">
 	<div class="container mx-auto">
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
-				<a href="javascript:history.back();" class="cursor-pointer"> <i
-					class="fas fa-chevron-left"></i>
-				</a> <span>게시물 리스트</span>
+				<a href="javascript:history.back();" class="cursor-pointer">
+					<i class="fas fa-chevron-left"></i>
+				</a>
+				<span>게시물 리스트</span>
 			</div>
 
-			<div class="px-4 py-4">
+			<div class="px-4">
 				<c:forEach items="${articles}" var="article">
-					<div>
+					<div class ="py-4">
 						<a class="hover:underline cursor-pointer block">
-						 <span class="badge badge-outline">제목</span>
-							<div class="line-clamp-3">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad accusantium alias optio nesciunt ipsum quaerat quas deleniti quae porro aliquam officiis excepturi delectus praesentium a soluta beatae illo hic.
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad accusantium alias optio nesciunt ipsum quaerat quas deleniti quae porro aliquam officiis excepturi delectus praesentium a soluta beatae illo hic.
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad accusantium alias optio nesciunt ipsum quaerat quas deleniti quae porro aliquam officiis excepturi delectus praesentium a soluta beatae illo hic.
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad accusantium alias optio nesciunt ipsum quaerat quas deleniti quae porro aliquam officiis excepturi delectus praesentium a soluta beatae illo hic.
-							</div>
+							<span class="badge badge-outline">제목</span>
+							<div class="line-clamp-3">${article.titleForprint}</div>
 						</a>
+
+						<div
+							class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+							<a href="#" class="row-span-7">
+								<img class="rounded-full" src="https://i.pravatar.cc/200?img=37"
+									alt="">
+							</a>
+
+							<a href="#" class="hover:underline">
+								<span class="badge badge-primary">번호</span>
+								<span>${article.id}</span>
+							</a>
+
+							<a href="#" class="cursor-pointer hover:underline">
+								<span class="badge badge-accent">작성자</span>
+								<span>${article.memberId}</span>
+							</a>
+
+							<a href="#" class="hover:underline">
+								<span class="badge">등록날짜</span>
+								<span class="text-gray-600 text-light">${article.regDate}</span>
+							</a>
+
+							<a href="#" class="hover:underline">
+								<span class="badge">수정날짜</span>
+								<span class="text-gray-600 text-light">${article.updateDate}</span>
+							</a>
+
+							<a
+								class="mt-3 hover:underline cursor-pointer col-span-1 sm:col-span-2 xl:col-span-3">
+								<span class="badge badge-outline">본문</span>
+								<div class="line-clamp-3">${article.bodySummaryForprint}</div>
+							
+								<div class="mt-2">
+									<img class="rounded" src="https://picsum.photos/id/237/200/300" alt="" />
+								</div>
+							</a>
+						</div>
 						<!--
 							번호 : ${article.id}
 							<br>
