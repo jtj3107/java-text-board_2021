@@ -4,23 +4,22 @@ import java.util.Map;
 
 import com.jsh.exam.exam2.util.Ut;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
 public class ResultDate {
+	@Getter
 	private String msg;
+	@Getter
 	private String resultCode;
+	@Getter
 	private Map<String, Object> body;
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public String getResultCode() {
-		return resultCode;
-	}
-
-	public Map<String, Object> getBody() {
-		return body;
-	}
 	
+	private ResultDate() {
+		
+	}
+
 	public boolean isSuccess() {
 		return resultCode.startsWith("S-1");
 	}

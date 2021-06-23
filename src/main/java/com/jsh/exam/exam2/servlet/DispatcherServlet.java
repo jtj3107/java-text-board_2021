@@ -38,7 +38,7 @@ public class DispatcherServlet extends HttpServlet {
 		}
 		
 		if( controller != null) {
-			MysqlUtil.setDBInfo("localhost", "geotjeoli", "gjl123414", "jsp_board");
+			MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jsp_board");
 			MysqlUtil.setDevMode(true);
 			
 			controller.perforAction(rq);			
