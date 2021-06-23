@@ -6,7 +6,7 @@ import com.jsh.exam.exam2.container.Container;
 import com.jsh.exam.exam2.dto.Article;
 import com.jsh.exam.exam2.dto.ResultDate;
 import com.jsh.exam.exam2.http.Rq;
-import com.jsh.exam.exam2.http.service.ArticleService;
+import com.jsh.exam.exam2.service.ArticleService;
 
 public class UsrArticleController extends Controller{
 	private ArticleService articleService = Container.articleService;

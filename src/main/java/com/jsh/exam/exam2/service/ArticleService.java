@@ -1,11 +1,11 @@
-package com.jsh.exam.exam2.http.service;
+package com.jsh.exam.exam2.service;
 
 import java.util.List;
 
 import com.jsh.exam.exam2.container.Container;
 import com.jsh.exam.exam2.dto.Article;
 import com.jsh.exam.exam2.dto.ResultDate;
-import com.jsh.exam.exam2.http.repository.ArticleRepository;
+import com.jsh.exam.exam2.repository.ArticleRepository;
 import com.jsh.exam.exam2.util.Ut;
 
 public class ArticleService {
