@@ -57,6 +57,7 @@
 					</script>
 					<form action="../article/doWrite" method="POST"
 						onsubmit="ArticleWrite__submit(this); return false;">
+						<input type="hidden" name="redirectUri" value="../article/detail?id=[NEW_ID]"/>			
 						<div>
 							<label class="label">
 								<span class="label-text">제목</span>

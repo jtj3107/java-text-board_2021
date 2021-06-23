@@ -115,4 +115,11 @@ public class Rq {
 		req.setAttribute(attrName, arrtValue);
 	}
 
+	public void replace(String msg, String redirectUri) {
+		println("<script>");
+		printf("alert('%s');\n", msg);
+		printf("location.replace('%s');\n", redirectUri);
+		println("</script>");
+	}
+
 }
