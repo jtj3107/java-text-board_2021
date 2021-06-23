@@ -3,29 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List"%>
 	
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>JSP BOARD</title>
+<c:set var="pageTitle" value="게시물 리스트" />	
+<%@ include file="../part/head.jspf" %>
 
-<!-- 모바일에서 디자인이 축소되지 않게 하기 위한 코드 -->
-<meta name="viewport" content="width=device-width, initial-csale=1">
-
-<!-- 폰트어썸 불러오기 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-<!-- 데이지 UI 불러오기 -->
-<link href="https://cdn.jsdelivr.net/npm/daisyui@0.20.0/dist/full.css"
-	rel="stylesheet" type="text/css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resource/font.css" />
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resource/common.css" />
-</head>
-<body>
 	<section class="section section-article-write">
 		<div class="container mx-auto">
 
@@ -57,5 +37,4 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
+<%@ include file="../part/foot.jspf" %>
