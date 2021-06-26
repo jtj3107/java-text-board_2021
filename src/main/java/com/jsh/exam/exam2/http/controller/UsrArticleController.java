@@ -19,7 +19,7 @@ public class UsrArticleController extends Controller {
 			actionShowList(rq);
 			break;
 		case "detail":
-			actionDetailList(rq);
+			actionShowDetail(rq);
 			break;
 		case "write":
 			actionShowWrite(rq);
@@ -64,7 +64,7 @@ public class UsrArticleController extends Controller {
 		rq.replace(Ut.f("%d번 게시무을 삭제 하였습니다.", id), redirecUri);
 	}
 
-	private void actionDetailList(Rq rq) {
+	private void actionShowDetail(Rq rq) {
 		int id = rq.getIntParam("id", 0);
 
 		if (id == 0) {
