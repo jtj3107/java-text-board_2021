@@ -29,4 +29,39 @@ public class ArticleRepository {
 		return MysqlUtil.selectRows(sql, Article.class);
 	}
 
+	public Article getRequestDispatcher(int id) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append("FROM article AS A");
+		sql.append("WHERE id = ?", id);
+		
+		return MysqlUtil.selectRow(sql, Article.class);
+	}
+
+	public Object delete(int id) {
+		SecSql sql = new SecSql();
+		sql.append("DELETE FROM article");
+		sql.append("WHERE id = ?", id);
+		
+		return MysqlUtil.delete(sql);
+	}
+
+	public int modify(int id, String title, String body) {
+		SecSql sql = new SecSql();
+		sql.append("UPDATE article");
+		sql.append("SET updateDate = NOW()");
+		
+		if( title != null) {
+			sql.append(", title = ?", title);
+		}
+		
+		if( body != null) {
+			sql.append(", body = ?", body);
+		}
+		sql.append("WHERE id = ?", id);
+		
+		return MysqlUtil.update(sql);
+		
+	}
+
 }

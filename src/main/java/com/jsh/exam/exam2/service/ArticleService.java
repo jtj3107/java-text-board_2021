@@ -21,4 +21,20 @@ public class ArticleService {
 		return articleRepository.getForPrintArticles();
 	}
 
+	public Article getForPrintArticleById(int id) {
+		return articleRepository.getRequestDispatcher(id);
+	}
+
+	public ResultDate delete(int id) {
+		articleRepository.delete(id);
+		
+		return ResultDate.from("S-1", Ut.f("%d번 게시물이 삭제되었습니다.", id), "id", id);
+	}
+
+	public ResultDate modify(int id, String title, String body) {
+		articleRepository.modify(id, title, body);
+		
+		return ResultDate.from("S-1", Ut.f("%d번 게시물이 수정되었습니다.", id), "id", id);
+	}
+
 }
