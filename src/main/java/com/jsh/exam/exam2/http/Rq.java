@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jsh.exam.exam2.dto.Article;
+import com.jsh.exam.exam2.dto.Member;
 import com.jsh.exam.exam2.util.Ut;
 
 import lombok.Getter;
@@ -137,4 +138,15 @@ public class Rq {
 		println("</script>");
 	}
 
+	public void setSesstionAttr(String attrName, String attrValue) {
+		req.getSession().setAttribute(attrName, attrValue);
+	}
+	
+	public void removeSesstionAttr(String attrName) {
+		req.getSession().removeAttribute(attrName);
+	}
+	
+	public <T> T getSesstionAttr(String attrName) {
+		return (T)req.getSession().getAttribute(attrName);
+	}
 }

@@ -3,6 +3,10 @@ package com.jsh.exam.exam2.util;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jsh.exam.exam2.dto.Member;
+
 public class Ut {
 	public static String f(String format, Object... args) {
 		return String.format(format, args);
@@ -37,5 +41,15 @@ public class Ut {
 
         return map;
     }
+
+	public static String toJson(Object obj, String detaultValue) {
+		ObjectMapper om = new ObjectMapper();
+		
+		try {
+			return om.writeValueAsString(obj);			
+		} catch (JsonProcessingException e) {
+			return detaultValue;
+		}
+	}
 
 }
