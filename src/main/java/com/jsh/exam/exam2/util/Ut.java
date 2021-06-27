@@ -52,4 +52,13 @@ public class Ut {
 		}
 	}
 
+	public static <T> T toObjFromJson(String jsonStr, Class<T> cls) {
+		ObjectMapper om = new ObjectMapper();
+		try {
+			return (T)om.readValue(jsonStr, cls);			
+		} catch (JsonProcessingException e) {
+			return null;
+		}
+	}
+
 }

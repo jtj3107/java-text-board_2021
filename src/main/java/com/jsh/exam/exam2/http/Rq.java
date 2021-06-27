@@ -2,18 +2,17 @@ package com.jsh.exam.exam2.http;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jsh.exam.exam2.dto.Article;
 import com.jsh.exam.exam2.dto.Member;
 import com.jsh.exam.exam2.util.Ut;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @ToString
@@ -28,6 +27,22 @@ public class Rq {
 	private String controllerName;
 	@Getter
 	private String actionMethodName;
+	
+	@Getter
+	@Setter
+	private boolean isLogined = false;
+
+	@Getter
+	@Setter
+	private int loginedMemberId = 0;
+	
+	@Getter
+	@Setter
+	private Member loginedMember = null;	
+
+	public boolean isNotLogined() {	
+		return isLogined == false;
+	}
 
 	public Rq(HttpServletRequest req, HttpServletResponse resp) {
 		// 들어오는 파리미터를 UTF-8로 해석
@@ -60,9 +75,7 @@ public class Rq {
 		int controllerNameIndex = 3;
 		int actionMethodNameIndex = 4;
 
-		this.controllerTypeName = requestUriBits[controllerTypeNameIndex];
-		this.controllerName = requestUriBits[controllerNameIndex];
-		this.actionMethodName = requestUriBits[actionMethodNameIndex];
+		
 	}
 
 	public void print(String str) {
@@ -118,7 +131,9 @@ public class Rq {
 
 	public void historyBack(String msg) {
 		println("<script>");
-		printf("alert('%s');\n", msg);
+		if( msg != null && msg.trim().length() > 0){
+			printf("alert('%s');\n", msg.trim());			
+		}
 		println("history.back();");
 		println("</script>");
 	}
@@ -133,7 +148,9 @@ public class Rq {
 
 	public void replace(String msg, String redirectUri) {
 		println("<script>");
-		printf("alert('%s');\n", msg);
+		if( msg != null && msg.trim().length() > 0){
+			printf("alert('%s');\n", msg.trim());			
+		}
 		printf("location.replace('%s');\n", redirectUri);
 		println("</script>");
 	}
@@ -146,7 +163,15 @@ public class Rq {
 		req.getSession().removeAttribute(attrName);
 	}
 	
-	public <T> T getSesstionAttr(String attrName) {
-		return (T)req.getSession().getAttribute(attrName);
+	public <T> T getSesstionAttr(String attrName, T defaultValue) {
+		if( req.getSession().getAttribute(attrName) == null) {
+			return defaultValue;
+		}
+		
+		return (T) req.getSession().getAttribute(attrName);
+	}
+
+	public String getActionPath() {
+		return "/" + controllerTypeName + "/" + controllerName + "/" + actionMethodName;
 	}
 }
